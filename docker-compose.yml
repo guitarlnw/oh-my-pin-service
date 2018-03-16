@@ -4,7 +4,7 @@ services:
 ### Workspace Utilities Container ###########################
     platform-service-oh-my-pin:
         image: node:8.9
-        command: yarn start
+        command: yarn dev
         env_file: .env
         depends_on:
             - 'oh_my_pin_mongodb'
@@ -12,6 +12,8 @@ services:
             - "4000:4000"
         volumes:
             - .:/usr/src/app
+        build: 
+            context: .
 
 ### Workspace Utilities Container ###########################
     oh_my_pin_mongodb:
