@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+### Workspace Utilities Container ###########################
+    platform-service-oh-my-pin:
+        image: node:8.9
+        command: yarn start
+        env_file: .env
+        depends_on:
+            - 'oh_my_pin_mongodb'
+        ports:
+            - "4000:4000"
+        volumes:
+            - .:/usr/src/app
+
+### Workspace Utilities Container ###########################
+    oh_my_pin_mongodb:
+        image: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./data/mongo:/data/db
+
+### Connect Network #######################################           
+networks:
+  default:
+      external:
+          name: oh-my-pin
